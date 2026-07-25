@@ -1,4 +1,4 @@
-# 🌐 D2NS Ecosystem
+## 🌐 D2NS Ecosystem
 
 > Enterprise Cloud Engineering Portfolio
 
@@ -39,15 +39,21 @@ Cada projeto representa um desafio específico encontrado em ambientes corporati
 - Microsoft Azure
 - Google Cloud Platform
 
-## Infraestrutura
+## Infraestrutura & IAC
 
 - Terraform
+- Azure Biceps
+- Azure ARM Template
+- AWS CloudFormation (Roadmap)
 - Docker
+- AWS CLI
+- Azure CLI
 - Kubernetes (Roadmap)
 
 ## DevOps
 
-- GitHub Actions
+- GitHub Actions (Roadmap)
+- Azure Devops Roadmap
 - CI/CD
 
 ## Observabilidade
@@ -59,10 +65,22 @@ Cada projeto representa um desafio específico encontrado em ambientes corporati
 ## Segurança
 
 - IAM
+- Microsoft Entra ID
+- RBAC
 - AWS Secrets Manager
 - Azure Key Vault
 - GCP Secret Manager
+- AWS Security Groups
+- Azure Network Security Groups (NSG)
+- WAF
 
+## 🌐 Redes
+
+- VPC / VNet
+- DNS
+- VPN
+- Load Balancer
+-  
 ## Banco de Dados
 
 - PostgreSQL
@@ -76,9 +94,7 @@ Cada projeto representa um desafio específico encontrado em ambientes corporati
 
 Plataforma corporativa construída na AWS para demonstrar arquitetura moderna, segurança, automação, observabilidade e FinOps.
 
-Status
-
-🟡 Em desenvolvimento
+**Status:** 🟡 Em desenvolvimento
 
 ---
 
@@ -86,9 +102,7 @@ Status
 
 Projeto dedicado à otimização de custos em ambientes multicloud.
 
-Status
-
-⚪ Planejado
+**Status:** ⚪ Planejado
 
 ---
 
@@ -96,9 +110,7 @@ Status
 
 Integração entre AWS, Azure e Google Cloud.
 
-Status
-
-⚪ Planejado
+**Status:** ⚪ Planejado
 
 ---
 
@@ -106,9 +118,7 @@ Status
 
 Implementação de Landing Zones seguindo boas práticas corporativas.
 
-Status
-
-⚪ Planejado
+**Status:** ⚪ Planejado
 
 ---
 
@@ -116,19 +126,17 @@ Status
 
 Centralização de monitoramento e observabilidade.
 
-Status
-
-⚪ Planejado
+**Status:** ⚪ Planejado
 
 ---
 
-## 📚 Enterprise Cloud Case Studies
+## 📚 [**ENTERPRISE-CLOUD-CASE-STUDIES**](https://github.com/drlima85/ENTERPRISE-CLOUD-CASE-STUDIES)
 
 Coleção de estudos de caso baseados em projetos corporativos reais, documentados de forma anonimizada.
 
-Status
+**Tecnologias:** • Cloud Azure \ AWS \ GCP • Networking • Governança • SaaS • Arquitetura • FinOps • Monitoração • Escabilidade
 
-🟢 Contínuo
+**Status:** 🟢 Contínuo  
 
 ---
 
@@ -161,15 +169,13 @@ Todo projeto deste ecossistema segue os mesmos pilares:
 
 # 👨‍💻 Autor
 
-**Danilo Lima**
+**Danilo Lima** - Senior Cloud & Infrastructure Engineer
 
-Senior Cloud & Infrastructure Engineer
-
-Azure • AWS • GCP • Terraform • DevOps • FinOps
+Azure • AWS • GCP • Terraform • DevOps • FinOps • Infra & Virtualização • SRE
 
 ---
 
-# 📬 Contato
+## 📬 Contato
 
 **LinkedIn:** https://www.linkedin.com/in/danilo-lima-9ba0375a
 
