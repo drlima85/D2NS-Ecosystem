@@ -2,7 +2,7 @@
 
 ## Visão Geral
 
-Este documento descreve o planejamento da arquitetura de rede da **D2NS Cloud Platform** na Amazon Web Services (AWS).
+Este documento descreve o planejamento da arquitetura de rede da **D2NS Cloud Platform** na Amazon Web Services (AWS) para a criação de uma aplicação chamada D2NS Study Hub.
 
 O objetivo é definir uma arquitetura segura, escalável e organizada antes da implementação da infraestrutura, seguindo boas práticas de Cloud Computing e Infrastructure as Code (IaC).
 
