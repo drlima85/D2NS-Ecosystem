@@ -64,43 +64,9 @@ Ela será utilizada como prova de conceito para validar a infraestrutura criada 
 
 ## Arquitetura atual
 
-```text
-                         Internet
-                             │
-                             ▼
-                    Internet Gateway
-                             │
-                             ▼
-                   Route Table pública
-                             │
-                             ▼
-┌──────────────────────────────────────────────────────────┐
-│                         VPC                              │
-│                    10.20.0.0/16                         │
-│                                                          │
-│  ┌─────────────────────────────┐                         │
-│  │       Subnet pública        │                         │
-│  │       10.20.1.0/24          │                         │
-│  │                             │                         │
-│  │  EC2 Amazon Linux 2023      │                         │
-│  │  ├── Security Group         │                         │
-│  │  ├── IAM Instance Profile   │                         │
-│  │  ├── Session Manager        │                         │
-│  │  ├── Git                    │                         │
-│  │  └── Docker                 │                         │
-│  └─────────────────────────────┘                         │
-│                                                          │
-│  ┌─────────────────────────────┐                         │
-│  │       Subnet privada        │                         │
-│  │       10.20.2.0/24          │                         │
-│  │                             │                         │
-│  │       Camada de dados       │                         │
-│  │         planejada           │                         │
-│  └─────────────────────────────┘                         │
-└──────────────────────────────────────────────────────────┘
-```
+A arquitetura atual contempla uma VPC dedicada, subnet pública para a camada de computação e subnet privada reservada para a camada de dados.
 
-A arquitetura será expandida progressivamente nas próximas sprints.
+O diagrama oficial da arquitetura está em desenvolvimento e será incluído nesta seção.
 
 ---
 
