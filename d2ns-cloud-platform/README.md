@@ -1,64 +1,206 @@
 # D2NS Cloud Platform
 
-> Projeto de portfólio desenvolvido para demonstrar a construção de uma plataforma Cloud moderna utilizando Amazon Web Services (AWS), Infraestrutura como Código (Terraform), Docker, DevOps e boas práticas de Arquitetura Cloud.
+> Plataforma Cloud construída como projeto de portfólio para demonstrar, na prática, conhecimentos em AWS, Terraform, segurança, automação, containers, DevOps e arquitetura de soluções.
 
 ---
 
-# 📖 Sobre o Projeto
+## Status do projeto
 
-A **D2NS Cloud Platform** é um projeto de portfólio criado para demonstrar, na prática, a construção de uma solução Cloud completa.
+![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
+![AWS](https://img.shields.io/badge/cloud-AWS-orange)
+![Terraform](https://img.shields.io/badge/IaC-Terraform-purple)
+![Docker](https://img.shields.io/badge/container-Docker-blue)
 
-O projeto contempla desde o planejamento da arquitetura até o provisionamento da infraestrutura, desenvolvimento da aplicação, deploy, automação, monitoramento e documentação técnica.
-
-O principal objetivo é aplicar conceitos utilizados em ambientes corporativos, demonstrando conhecimentos em Cloud Computing, Infraestrutura, Segurança, DevOps e Automação.
-
----
-
-# 🎯 Objetivos
-
-- Demonstrar conhecimentos em Arquitetura Cloud.
-- Aplicar Infraestrutura como Código (IaC).
-- Provisionar infraestrutura utilizando Terraform.
-- Implementar uma aplicação containerizada.
-- Utilizar PostgreSQL.
-- Aplicar boas práticas de segurança.
-- Automatizar processos.
-- Construir documentação técnica completa.
-- Desenvolver um projeto real para portfólio.
+| Sprint | Entrega | Status |
+|---|---|---|
+| Sprint 01 | Rede AWS e infraestrutura base | ✅ Concluída |
+| Sprint 02 | Computação segura e bootstrap automatizado | ✅ Concluída |
+| Sprint 03 | Camada de dados e integração entre serviços | ⏳ Próxima |
 
 ---
 
-# 💻 Aplicação
+## Sobre o projeto
 
-Como prova de conceito da infraestrutura será desenvolvida a aplicação **D2NS Study Hub**.
+A **D2NS Cloud Platform** é um projeto de portfólio criado para demonstrar a construção progressiva de uma plataforma Cloud completa.
 
-O objetivo da aplicação é centralizar conteúdos relacionados à Computação em Nuvem, permitindo organizar:
+O projeto contempla planejamento arquitetural, provisionamento da infraestrutura, segurança, automação, aplicação containerizada, banco de dados, observabilidade, integração contínua e documentação técnica.
 
-- Documentações
-- Cursos
-- Laboratórios
-- Vídeos
-- Repositórios
-- Artigos
-- Links úteis
-
-A aplicação servirá para validar toda a infraestrutura provisionada na AWS.
+Toda a infraestrutura é implementada como código com Terraform e evolui por sprints documentadas.
 
 ---
 
-# ☁ Tecnologias
+## Objetivos
 
-## Cloud
+- Projetar uma arquitetura Cloud organizada por camadas.
+- Provisionar recursos AWS com Terraform.
+- Aplicar Infraestrutura como Código.
+- Utilizar autenticação e autorização baseadas em IAM.
+- Reduzir a exposição de serviços administrativos.
+- Automatizar a configuração inicial das instâncias.
+- Desenvolver e executar uma aplicação containerizada.
+- Integrar aplicação e PostgreSQL.
+- Implementar observabilidade e automações DevOps.
+- Produzir documentação técnica para portfólio.
 
-- Amazon Web Services (AWS)
+---
 
-## Infraestrutura
+## Aplicação planejada
+
+A plataforma hospedará a aplicação **D2NS Study Hub**, criada para centralizar conteúdos relacionados a Cloud Computing e desenvolvimento profissional.
+
+A aplicação deverá permitir organizar:
+
+- documentações;
+- cursos;
+- laboratórios;
+- vídeos;
+- repositórios;
+- artigos;
+- links úteis.
+
+Ela será utilizada como prova de conceito para validar a infraestrutura criada no projeto.
+
+---
+
+## Arquitetura atual
+
+```text
+                         Internet
+                             │
+                             ▼
+                    Internet Gateway
+                             │
+                             ▼
+                   Route Table pública
+                             │
+                             ▼
+┌──────────────────────────────────────────────────────────┐
+│                         VPC                              │
+│                    10.20.0.0/16                         │
+│                                                          │
+│  ┌─────────────────────────────┐                         │
+│  │       Subnet pública        │                         │
+│  │       10.20.1.0/24          │                         │
+│  │                             │                         │
+│  │  EC2 Amazon Linux 2023      │                         │
+│  │  ├── Security Group         │                         │
+│  │  ├── IAM Instance Profile   │                         │
+│  │  ├── Session Manager        │                         │
+│  │  ├── Git                    │                         │
+│  │  └── Docker                 │                         │
+│  └─────────────────────────────┘                         │
+│                                                          │
+│  ┌─────────────────────────────┐                         │
+│  │       Subnet privada        │                         │
+│  │       10.20.2.0/24          │                         │
+│  │                             │                         │
+│  │       Camada de dados       │                         │
+│  │         planejada           │                         │
+│  └─────────────────────────────┘                         │
+└──────────────────────────────────────────────────────────┘
+```
+
+A arquitetura será expandida progressivamente nas próximas sprints.
+
+---
+
+## Recursos já implementados
+
+### Rede
+
+- VPC dedicada;
+- Internet Gateway;
+- subnet pública;
+- subnet privada;
+- Route Table pública;
+- rota padrão para Internet;
+- associação da Route Table à subnet pública;
+- padronização de nomes e tags;
+- outputs da infraestrutura.
+
+### Segurança e identidade
+
+- Security Group sem regras de entrada;
+- ausência de exposição da porta SSH;
+- acesso administrativo pelo AWS Systems Manager;
+- IAM Role para EC2;
+- IAM Instance Profile;
+- policy `AmazonSSMManagedInstanceCore`;
+- política dedicada para o usuário Terraform;
+- princípio de menor privilégio.
+
+### Computação
+
+- EC2 `t3.micro`;
+- Amazon Linux 2023;
+- AMI consultada dinamicamente;
+- volume raiz `gp3` de 8 GB;
+- criptografia do volume;
+- IMDSv2 obrigatório;
+- endereço IP público;
+- substituição automática quando o User Data muda.
+
+### Bootstrap automatizado
+
+O User Data prepara a EC2 durante o primeiro boot:
+
+- atualiza os pacotes;
+- instala Git;
+- instala Docker;
+- inicializa e habilita o Docker;
+- adiciona `ec2-user` ao grupo `docker`;
+- cria um log de conclusão.
+
+---
+
+## Decisões de segurança
+
+A EC2 não possui porta SSH aberta nem Key Pair.
+
+O acesso administrativo é realizado pelo Session Manager:
+
+```text
+Administrador
+      │
+      ▼
+IAM
+      │
+      ▼
+AWS Systems Manager
+      │
+      ▼
+EC2
+```
+
+Essa abordagem reduz a superfície de ataque, elimina o gerenciamento de chaves privadas e centraliza o controle de acesso em IAM.
+
+---
+
+## Tecnologias
+
+### Cloud
+
+- Amazon Web Services
+- Amazon EC2
+- Amazon VPC
+- AWS IAM
+- AWS Systems Manager
+- Amazon EBS
+
+### Infraestrutura como Código
 
 - Terraform
-- Docker
-- Docker Compose
+- HashiCorp AWS Provider
 
-## Aplicação
+### Sistema e automação
+
+- Amazon Linux 2023
+- Bash
+- cloud-init
+- Git
+- Docker
+
+### Aplicação planejada
 
 - React
 - Vite
@@ -66,54 +208,52 @@ A aplicação servirá para validar toda a infraestrutura provisionada na AWS.
 - Express
 - Sequelize
 - PostgreSQL
+- Docker Compose
 
-## DevOps
+### DevOps planejado
 
-- Git
-- GitHub
-- GitHub Actions *(planejado)*
-
----
-
-# 🏗 Arquitetura
-
-A arquitetura seguirá os princípios de:
-
-- Infraestrutura como Código (IaC)
-- Security by Default
-- Least Privilege
-- Escalabilidade
-- Alta Disponibilidade
-- Automação
-- Padronização
-- Documentação Contínua
+- GitHub Actions
+- CI/CD
+- CloudWatch
+- logs e monitoramento
 
 ---
 
-# 📁 Estrutura do Projeto
+## Estrutura atual do projeto
 
 ```text
 d2ns-cloud-platform/
 │
-├── application/
-│   └── d2ns-study-hub/
-│       ├── backend/
-│       ├── frontend/
-│       ├── docker/
-│       └── database/
-│
+├── app/
+├── assets/
+├── docker/
 ├── docs/
 │   ├── architecture/
 │   ├── decisions/
 │   ├── diagrams/
-│   └── sprint/
+│   └── sprints/
+│       ├── SPRINT-01-network.md
+│       └── SPRINT-02-compute.md
 │
+├── infrastructure/
+│   ├── networking/
+│   └── terraform/
+│       ├── userdata/
+│       │   └── bootstrap.sh
+│       ├── compute.tf
+│       ├── iam.tf
+│       ├── locals.tf
+│       ├── network.tf
+│       ├── outputs.tf
+│       ├── providers.tf
+│       ├── security.tf
+│       ├── variables.tf
+│       └── versions.tf
+│
+├── monitoring/
 ├── scripts/
-│
-├── terraform/
-│
+├── tests/
 ├── .gitignore
-├── LICENSE
 ├── PROJECT_CHARTER.md
 ├── ROADMAP.md
 └── README.md
@@ -121,90 +261,158 @@ d2ns-cloud-platform/
 
 ---
 
-# 📚 Documentação
+## Documentação das sprints
 
-Toda a evolução do projeto será documentada.
+### Sprint 01 — Rede AWS
 
-Entre os documentos previstos estão:
+Provisionamento da infraestrutura de rede:
 
-- README
-- Project Charter
-- Roadmap
-- Sprint Planning
-- Arquitetura da Rede
-- Arquitetura da Aplicação
-- Diagramas
-- ADRs (Architecture Decision Records)
-- Lições Aprendidas
+- VPC;
+- Internet Gateway;
+- subnets pública e privada;
+- Route Table pública;
+- rota para Internet;
+- associação da subnet;
+- outputs;
+- validações no Terraform e na AWS.
+
+Documentação:
+
+```text
+docs/sprints/SPRINT-01-network.md
+```
+
+### Sprint 02 — Computação e bootstrap
+
+Provisionamento da camada de computação:
+
+- Security Group;
+- IAM Role;
+- IAM Instance Profile;
+- EC2;
+- Session Manager;
+- User Data;
+- instalação automática de Git e Docker;
+- validação do bootstrap.
+
+Documentação:
+
+```text
+docs/sprints/SPRINT-02-compute.md
+```
 
 ---
 
-# 🗺 Roadmap
+## Como validar a infraestrutura
 
-## Fase 1 — Planejamento
+No diretório:
 
-- [x] Estrutura do Projeto
-- [x] README
+```text
+infrastructure/terraform
+```
+
+Execute:
+
+```bash
+terraform fmt -check
+terraform validate
+terraform plan
+```
+
+Após o provisionamento, o resultado esperado do plano é:
+
+```text
+No changes. Your infrastructure matches the configuration.
+```
+
+---
+
+## Roadmap
+
+### Fase 1 — Planejamento
+
+- [x] Estrutura do projeto
+- [x] README inicial
 - [x] Project Charter
 - [x] Roadmap
-- [x] Arquitetura de Rede AWS
+- [x] Arquitetura inicial
 
-## Fase 2 — Infraestrutura
+### Fase 2 — Infraestrutura base
 
-- [ ] Terraform
-- [ ] VPC
-- [ ] Internet Gateway
-- [ ] Route Tables
-- [ ] Subnets
-- [ ] Security Groups
-- [ ] EC2
-- [ ] Amazon RDS
+- [x] Terraform
+- [x] VPC
+- [x] Internet Gateway
+- [x] Route Table pública
+- [x] Subnet pública
+- [x] Subnet privada
+- [x] Security Group
+- [x] IAM Role
+- [x] IAM Instance Profile
+- [x] EC2
+- [x] Session Manager
+- [x] User Data
+- [x] Bootstrap com Git e Docker
+- [ ] Camada de dados
+- [ ] Amazon RDS PostgreSQL
+- [ ] Segurança entre aplicação e banco
 
-## Fase 3 — D2NS Study Hub
+### Fase 3 — D2NS Study Hub
 
 - [ ] Arquitetura da aplicação
 - [ ] Banco PostgreSQL
 - [ ] API REST
-- [ ] React + Vite
-- [ ] Docker
-- [ ] Deploy
+- [ ] Frontend React e Vite
+- [ ] Containerização
+- [ ] Deploy na AWS
 
-## Fase 4 — DevOps
+### Fase 4 — DevOps
 
 - [ ] GitHub Actions
-- [ ] Build Automatizado
-- [ ] Deploy Automatizado
+- [ ] validação automatizada do Terraform
+- [ ] build automatizado
+- [ ] deploy automatizado
 
-## Fase 5 — Observabilidade
+### Fase 5 — Observabilidade
 
 - [ ] CloudWatch
-- [ ] Logs
-- [ ] Monitoramento
+- [ ] centralização de logs
+- [ ] métricas
+- [ ] alarmes
+- [ ] dashboards
 
 ---
 
-# 🎯 Objetivo Final
+## Principais aprendizados até agora
 
-Ao final do projeto será possível demonstrar conhecimentos em:
-
-- Amazon Web Services (AWS)
-- Terraform
-- Docker
-- PostgreSQL
-- Node.js
-- React
-- DevOps
-- Segurança
-- Observabilidade
-- Infraestrutura como Código
-- Arquitetura Cloud
-
-Tudo isso através de uma plataforma totalmente funcional, documentada e desenvolvida seguindo boas práticas utilizadas em ambientes corporativos.
+- organização de projetos Terraform;
+- dependência entre recursos AWS;
+- uso de variáveis e locals;
+- padronização de nomes e tags;
+- diferença entre IAM e Security Groups;
+- diferença entre Trust Policy e Permission Policy;
+- princípio de menor privilégio;
+- acesso administrativo sem SSH;
+- bootstrap com User Data;
+- reprodutibilidade de infraestrutura;
+- documentação técnica por sprint.
 
 ---
 
-# 📄 Licença
+## Próxima etapa
 
-Este projeto foi desenvolvido exclusivamente para fins de estudo, demonstração técnica e composição de portfólio.
+A próxima etapa será a **Sprint 03 — Camada de Dados**, com foco em:
 
-Consulte o arquivo LICENSE para mais informações.
+- PostgreSQL gerenciado;
+- subnets privadas para banco de dados;
+- Security Group específico para o RDS;
+- comunicação restrita entre aplicação e banco;
+- gerenciamento seguro de credenciais;
+- preparação da aplicação para consumir o banco.
+
+---
+
+## Licença
+
+Este projeto foi desenvolvido para fins de estudo, demonstração técnica e composição de portfólio.
+
+Consulte o arquivo [LICENSE](../LICENSE) para mais informações.
